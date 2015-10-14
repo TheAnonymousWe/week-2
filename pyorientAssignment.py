@@ -1,4 +1,3 @@
-
 import pyorient
 import sys
 
@@ -29,21 +28,27 @@ numListings = len(records)
 
 print 'received ' + str(numListings) + ' records'
 
-# [ANALYZE THE RETURNED RECORDS TO DETERMINE THE MINIMUM, MAXIMUM, AND AVERAGE PRICE OF THE LISTINGS]
-# Hint: the loop that you need to look into each record is already provided below.
-# To find the average price, add up all the prices and divide by the number of results
-# To find the minimum price, create a variable and initialize it to a very large number, 
-# then test each price to see if it is smaller than the current minimum. If it is, update 
-# the minimum variable with that price. You can do something similar to find the maximum.
+sumPrice = 0
+minPrice = 1000000
+maxPrice = 1
 
 for record in records:
 	print record.price
 
+        sumPrice += record.price
+        averagePrice = sumPrice / numListings
+        
+        if record.price < minPrice:
+            minPrice = record.price
+            
+        if record.price > maxPrice:
+            
+            maxPrice = record.price
 
 # [PRINT OUT THE RESULTING VALUES BY CONCATENATING THEM TO THESE LINES TO CHECK YOUR WORK]
 
-print 'min price: '
-print 'max price: ' 
-print 'average price: '
+print 'min price: ' + str(minPrice)
+print 'max price: ' + str(maxPrice)
+print 'average price: ' + str(averagePrice)
 
 client.db_close()
